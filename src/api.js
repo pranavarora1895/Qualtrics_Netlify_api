@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
 
     language: "eng",
 
-    // exp: 1616239022, // This will automatically expire the jwt once it is created and used for ASA24. Comment this to run the simulation.
+    exp: 1616239022, // This will automatically expire the jwt once it is created and used for ASA24. Comment this to run the simulation.
 
     iss: username,
 
