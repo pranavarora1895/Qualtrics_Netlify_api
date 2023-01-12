@@ -11,7 +11,7 @@ app.use(express.json());
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
   const username = req.body.username;
   const user = {
     study: "4a415f49-0897-43af-8e49-42b6979e7a9b",
