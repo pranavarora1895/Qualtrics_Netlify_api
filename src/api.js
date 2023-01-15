@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const serverless = require("serverless-http");
+const uniqid = require("uniqid");
 
 const jwt = require("jsonwebtoken");
 
@@ -34,7 +35,7 @@ router.post("/", (req, res) => {
   };
 
   const qualtricsJWT = jwt.sign(user, process.env.SECRET);
-  return res.json({ qualtricsJWT });
+  return res.json({ qualtricsJWT, id: uniqid("mun-") });
 });
 
 app.use("/.netlify/functions/api", router);
