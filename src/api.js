@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 
     exp: 1616239022, // This will automatically expire the jwt once it is created and used for ASA24. Comment this to run the simulation.
 
-    iss: username,
+    iss: "sugarmun",
 
     redirect: "http://www.examplesurveysite.com/",
   };
