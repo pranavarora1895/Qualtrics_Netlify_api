@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 
     iss: "sugarmun",
 
-    redirect: "https://www.qualtrics.com/",
+    redirect: "http://www.examplesurveysite.com/",
   };
 
   const qualtricsJWT = jwt.sign(user, process.env.SECRET);
