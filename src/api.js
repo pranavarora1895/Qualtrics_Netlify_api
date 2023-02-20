@@ -13,7 +13,7 @@ app.use(express.json());
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  const username = req.body.username;
+  const username = uniqid("mun-");
   const user = {
     study: "4a415f49-0897-43af-8e49-42b6979e7a9b",
 
@@ -35,7 +35,7 @@ router.post("/", (req, res) => {
   };
 
   const qualtricsJWT = jwt.sign(user, process.env.SECRET);
-  return res.json({ qualtricsJWT, id: uniqid("mun-") });
+  return res.json({ qualtricsJWT, username });
 });
 
 app.use("/.netlify/functions/api", router);
