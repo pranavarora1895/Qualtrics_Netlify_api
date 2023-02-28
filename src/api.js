@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 
     iss: "sugarmun",
 
-    redirect: `https://mun.az1.qualtrics.com/jfe/form/SV_6MwsYx7YDSwO0rY?username=${username}`,
+    redirect: `https://mun.az1.qualtrics.com/jfe/form/SV_6MwsYx7YDSwO0rY?username=${username}&`,
   };
 
   const qualtricsJWT = jwt.sign(user, process.env.SECRET);
