@@ -13,13 +13,16 @@ app.use(express.json());
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  const username = uniqid("mun-");
+  const study = req.body.study;
+  const studyAccess = req.body.studyAccess;
+  const redirect = req.body.redirect;
+  const username = uniqid(`${studyAccess}-`);
   const user = {
-    study: "4a415f49-0897-43af-8e49-42b6979e7a9b",
+    study: study,
 
     roles: ["respondent"],
 
-    studyAccess: ["sugarmun"],
+    studyAccess: [studyAccess],
 
     version: 20,
 
@@ -27,15 +30,25 @@ router.post("/", (req, res) => {
 
     language: "eng",
 
-    exp: 1708193197, // This will automatically expire the jwt once it is created and used for ASA24. Comment this to run the simulation.
+    exp: 1708193197,
 
-    iss: "sugarmun",
+    iss: studyAccess,
 
-    redirect: `https://mun.az1.qualtrics.com/jfe/form/SV_6MwsYx7YDSwO0rY?username=${username}&`,
+    redirect: `${redirect}?username=${username}&`,
   };
 
-  const qualtricsJWT = jwt.sign(user, process.env.SECRET);
-  return res.json({ qualtricsJWT, username });
+  if (studyAccess === "sugarmun") {
+    const qualtricsJWT = jwt.sign(user, process.env.SUGARMUN_SECRET);
+    return res.json({ qualtricsJWT, username });
+  }
+  if (studyAccess === "sugarmqo") {
+    const qualtricsJWT = jwt.sign(user, process.env.SUGARMQO_SECRET);
+    return res.json({ qualtricsJWT, username });
+  }
+  if (studyAccess === "sugaryth") {
+    const qualtricsJWT = jwt.sign(user, process.env.SUGARYTH_SECRET);
+    return res.json({ qualtricsJWT, username });
+  }
 });
 
 app.use("/.netlify/functions/api", router);
