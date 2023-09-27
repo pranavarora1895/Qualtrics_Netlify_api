@@ -49,6 +49,14 @@ router.post("/", (req, res) => {
     const qualtricsJWT = jwt.sign(user, process.env.SUGARYTH_SECRET);
     return res.json({ qualtricsJWT, username });
   }
+  if (studyAccess === "SSBTaxA") {
+    const qualtricsJWT = jwt.sign(user, process.env.SSBTAXA_SECRET);
+    return res.json({ qualtricsJWT, username });
+  }
+  if (studyAccess === "SSBTaxYo") {
+    const qualtricsJWT = jwt.sign(user, process.env.SSBTAXYO_SECRET);
+    return res.json({ qualtricsJWT, username });
+  }
 });
 
 app.use("/.netlify/functions/api", router);
