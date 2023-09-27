@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
 
     language: "eng",
 
-    exp: 1708193197,
+    exp: 1616239022,
 
     iss: studyAccess,
 
